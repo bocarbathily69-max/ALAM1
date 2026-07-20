@@ -890,6 +890,217 @@ body {
   box-shadow: 0 4px 8px rgba(12, 62, 43, 0.2);
 }
 
+/* ── Review Case Modal Styles ─────────────────────────────────────────── */
+
+/* Metrics row in Review modal */
+.review-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.review-metric-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+}
+
+.review-metric-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.review-metric-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 2px;
+}
+
+.review-metric-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Implementation steps */
+.review-section-heading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.review-steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.review-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.review-step-number {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-brand-dark);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Footer buttons */
+.review-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+  margin-top: 0.25rem;
+}
+
+.review-close-btn {
+  background-color: #f1f5f9;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 0.6rem 1.25rem;
+  border-radius: 20px;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.review-close-btn:hover {
+  background-color: #e2e8f0;
+  color: var(--color-text-primary);
+}
+
+.review-approve-btn {
+  background-color: var(--color-brand-active);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 20px;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.review-approve-btn:hover {
+  background-color: var(--color-brand-hover);
+  box-shadow: 0 4px 12px rgba(11, 176, 116, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ── Planner Review Btn (card inline) ─────────────────────────────────── */
+.proposal-review-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-family);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  padding: 0;
+  transition: var(--transition-fast);
+}
+
+.proposal-review-btn:hover {
+  color: var(--color-brand-active);
+}
+
+/* ── Planner Pagination ────────────────────────────────────────────────── */
+.planner-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.planner-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.planner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  padding: 0;
+}
+
+.planner-dot.active {
+  background-color: var(--color-brand-active);
+  transform: scale(1.2);
+}
+
+.planner-dot:hover:not(.active) {
+  background-color: #cbd5e1;
+}
+
+.planner-nav-btn {
+  background: #f1f5f9;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: var(--transition-fast);
+  color: var(--color-text-secondary);
+}
+
+.planner-nav-btn:hover {
+  background-color: var(--color-brand-dark);
+  color: #ffffff;
+  border-color: var(--color-brand-dark);
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
