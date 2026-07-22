@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import KPICards from './components/KPICards';
 import ChartsSection from './components/ChartsSection';
 import DecarbonizationPlanner from './components/DecarbonizationPlanner';
 import ConsolidatedTable from './components/ConsolidatedTable';
+import Inventory from './components/Inventory';
 import { mockData } from './data/mockData';
 import ReportModal from './components/ReportModal';
 import './App.css';
@@ -44,6 +45,8 @@ function App() {
               <ConsolidatedTable sites={currentData.sites} onViewReport={setActiveReport} />
             </section>
           </>
+        ) : activeTab === 'inventory' ? (
+          <Inventory items={currentData.inventory || []} />
         ) : (
           <div
             style={{
