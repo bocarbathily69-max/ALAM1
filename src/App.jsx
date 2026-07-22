@@ -6,6 +6,7 @@ import ChartsSection from './components/ChartsSection';
 import DecarbonizationPlanner from './components/DecarbonizationPlanner';
 import ConsolidatedTable from './components/ConsolidatedTable';
 import Inventory from './components/Inventory';
+import Reports from './components/Reports';
 import { mockData } from './data/mockData';
 import ReportModal from './components/ReportModal';
 import './App.css';
@@ -52,9 +53,7 @@ function App() {
             <DecarbonizationPlanner proposals={currentData.proposals || []} />
           </div>
         ) : activeTab === 'reports' ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <ConsolidatedTable sites={currentData.sites || []} onViewReport={setActiveReport} />
-          </div>
+          <Reports reports={currentData.reports || mockData["Main Overview"].reports} />
         ) : (
           <div
             style={{

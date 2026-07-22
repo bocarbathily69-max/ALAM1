@@ -180,6 +180,56 @@
         auditedDate: "2026-07-12",
         notes: "Hosted corporate ERP, analytics engines, and telemetry storage."
       }
+    ],
+    reports: [
+      {
+        id: "REP-2026-01",
+        title: "Annual GHG Protocol Accounting Report",
+        standard: "GHG Protocol Corporate Standard",
+        period: "FY 2025 - 2026",
+        verifiedEmissions: "1,240 tCO2e",
+        scopeBreakdown: { scope1: 324, scope2: 496, scope3: 420 },
+        verifier: "EcoCert Veritas International",
+        status: "Certified",
+        issuedDate: "2026-06-15",
+        summary: "Full corporate carbon inventory audit across all African operating facilities. Comprehensive coverage of Scope 1, 2, and initial Scope 3 Scope categories."
+      },
+      {
+        id: "REP-2026-02",
+        title: "ISO 14064-1 Carbon Footprint Verification Statement",
+        standard: "ISO 14064-1:2018",
+        period: "H1 2026 Baseline",
+        verifiedEmissions: "620 tCO2e",
+        scopeBreakdown: { scope1: 160, scope2: 250, scope3: 210 },
+        verifier: "Global Carbon Standards Bureau",
+        status: "Certified",
+        issuedDate: "2026-07-01",
+        summary: "Independent third-party verification statement validating quantification and reporting of greenhouse gas emissions at corporate facilities."
+      },
+      {
+        id: "REP-2026-03",
+        title: "CSRD Sustainability & ESG Disclosure Report",
+        standard: "EU Corporate Sustainability Reporting Directive",
+        period: "Q1 - Q2 2026",
+        verifiedEmissions: "620 tCO2e",
+        scopeBreakdown: { scope1: 160, scope2: 250, scope3: 210 },
+        verifier: "Deloitte ESG Assurance Services",
+        status: "Under Review",
+        issuedDate: "2026-07-18",
+        summary: "Double-materiality ESG carbon report covering climate adaptation, transition risks, energy efficiency KPIs, and Net-Zero milestone tracking."
+      },
+      {
+        id: "REP-2026-04",
+        title: "Decarbonization Roadmap & Net-Zero Target Audit",
+        standard: "SBTi Corporate Net-Zero Standard",
+        period: "2026 - 2030 Horizon",
+        verifiedEmissions: "Target: -45% by 2030",
+        scopeBreakdown: { scope1: 180, scope2: 210, scope3: 310 },
+        verifier: "ALAM AI Advisory Engine",
+        status: "Draft",
+        issuedDate: "2026-07-20",
+        summary: "Strategic projection analysis detailing capital expenditure requirements, ROI payback periods, and projected emissions reductions for top 5 initiatives."
+      }
     ]
   },
   "Lagos Branch": {
@@ -283,6 +333,20 @@
         auditedDate: "2026-06-18",
         notes: "Staff transport shuttles across Lagos metropolitan area."
       }
+    ],
+    reports: [
+      {
+        id: "REP-LAG-01",
+        title: "Lagos HQ Environmental & Energy Audit Report",
+        standard: "ISO 50001 / GHG Protocol",
+        period: "FY 2025 - 2026",
+        verifiedEmissions: "450 tCO2e",
+        scopeBreakdown: { scope1: 158, scope2: 182, scope3: 110 },
+        verifier: "West Africa Sustainability Auditors",
+        status: "Certified",
+        issuedDate: "2026-05-20",
+        summary: "Detailed energy balance and carbon footprint audit for Lagos HQ facility, focusing on diesel generator offset potential."
+      }
     ]
   },
   "Nairobi Office": {
@@ -358,6 +422,20 @@
         status: "Estimated",
         auditedDate: "2026-04-11",
         notes: "Recycled and virgin paper supplies."
+      }
+    ],
+    reports: [
+      {
+        id: "REP-NBO-01",
+        title: "Nairobi Regional Carbon Baseline & E-Mobility Study",
+        standard: "GHG Protocol Scope 1 & 2",
+        period: "H1 2026",
+        verifiedEmissions: "310 tCO2e",
+        scopeBreakdown: { scope1: 28, scope2: 65, scope3: 217 },
+        verifier: "East Africa Clean Energy Council",
+        status: "Certified",
+        issuedDate: "2026-06-10",
+        summary: "Baseline carbon accounting for Kenya operational Hub. Includes e-mobility fleet conversion feasibility study."
       }
     ]
   }
