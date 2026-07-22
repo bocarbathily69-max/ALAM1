@@ -4,6 +4,127 @@ import {
   Clock, ShieldCheck, FileText, X, ArrowUpRight, Layers, Factory, Fuel
 } from 'lucide-react';
 
+/* ─── Default Fallback Inventory Items ──────────────────────────────────── */
+const defaultInventory = [
+  {
+    id: "INV-001",
+    name: "Backup Diesel Generators (500kVA)",
+    category: "Stationary Combustion",
+    scope: "Scope 1",
+    location: "Lagos HQ",
+    consumption: "45,000 L Diesel / yr",
+    factor: "2.68 kg CO2e / L",
+    emissions: 120.6,
+    status: "Verified",
+    auditedDate: "2026-05-14",
+    notes: "Primary power fallback during local grid outages. Dual Cat C15 generators."
+  },
+  {
+    id: "INV-002",
+    name: "Logistics Delivery Vans (Diesel)",
+    category: "Mobile Combustion",
+    scope: "Scope 1",
+    location: "Cape Town Plant",
+    consumption: "62,000 L Diesel / yr",
+    factor: "2.68 kg CO2e / L",
+    emissions: 166.1,
+    status: "Verified",
+    auditedDate: "2026-06-02",
+    notes: "Fleet of 12 regional distribution vans serving Western Cape routes."
+  },
+  {
+    id: "INV-003",
+    name: "HVAC Chillers & Refrigerants (R-410A)",
+    category: "Fugitive Emissions",
+    scope: "Scope 1",
+    location: "Lagos HQ",
+    consumption: "18 kg Top-up / yr",
+    factor: "2,088 kg CO2e / kg",
+    emissions: 37.5,
+    status: "Action Required",
+    auditedDate: "2026-04-20",
+    notes: "Central cooling system. Leakage rate estimated at 4.2% annually."
+  },
+  {
+    id: "INV-004",
+    name: "Grid Purchased Electricity",
+    category: "Purchased Electricity",
+    scope: "Scope 2",
+    location: "Lagos HQ",
+    consumption: "380,000 kWh / yr",
+    factor: "0.48 kg CO2e / kWh",
+    emissions: 182.4,
+    status: "Verified",
+    auditedDate: "2026-06-30",
+    notes: "Local utility grid supply. High fossil fuel baseline factor."
+  },
+  {
+    id: "INV-005",
+    name: "Grid Electricity Supply",
+    category: "Purchased Electricity",
+    scope: "Scope 2",
+    location: "Nairobi Office",
+    consumption: "210,000 kWh / yr",
+    factor: "0.31 kg CO2e / kWh",
+    emissions: 65.1,
+    status: "Verified",
+    auditedDate: "2026-06-15",
+    notes: "Kenya Power grid supply with high hydro/geothermal mix."
+  },
+  {
+    id: "INV-006",
+    name: "Grid Electricity - Industrial",
+    category: "Purchased Electricity",
+    scope: "Scope 2",
+    location: "Cape Town Plant",
+    consumption: "270,000 kWh / yr",
+    factor: "0.92 kg CO2e / kWh",
+    emissions: 248.4,
+    status: "Pending Review",
+    auditedDate: "2026-07-01",
+    notes: "Eskom grid supply. Coal-heavy regional factor."
+  },
+  {
+    id: "INV-007",
+    name: "Upstream Freight & Distribution",
+    category: "Purchased Goods & Services",
+    scope: "Scope 3",
+    location: "Global Supply Chain",
+    consumption: "420,000 ton-km",
+    factor: "0.78 kg CO2e / ton-km",
+    emissions: 327.6,
+    status: "Estimated",
+    auditedDate: "2026-03-10",
+    notes: "Ocean & road freight for raw component imports from Europe/Asia."
+  },
+  {
+    id: "INV-008",
+    name: "Business Travel & Flights",
+    category: "Business Travel",
+    scope: "Scope 3",
+    location: "Global",
+    consumption: "185,000 pax-km",
+    factor: "0.19 kg CO2e / pax-km",
+    emissions: 35.2,
+    status: "Verified",
+    auditedDate: "2026-06-25",
+    notes: "Long-haul executive flights and regional African commuter routes."
+  },
+  {
+    id: "INV-009",
+    name: "Cloud Infrastructure & Data Centers",
+    category: "Purchased Services",
+    scope: "Scope 3",
+    location: "AWS / Azure Cloud",
+    consumption: "125,000 kWh compute",
+    factor: "0.22 kg CO2e / kWh",
+    emissions: 27.5,
+    status: "Verified",
+    auditedDate: "2026-07-12",
+    notes: "Hosted corporate ERP, analytics engines, and telemetry storage."
+  }
+];
+
 /* ─── Asset Details Modal Sub-component ─────────────────────────────────── */
 const AssetDetailModal = ({ asset, onClose }) => {
   if (!asset) return null;
@@ -171,20 +292,23 @@ const AssetDetailModal = ({ asset, onClose }) => {
 };
 
 /* ─── Main Inventory Component ────────────────────────────────────────────── */
-const Inventory = ({ items = [] }) => {
+const Inventory = ({ items }) => {
+  // Ensure items is never empty
+  const activeItems = (items && items.length > 0) ? items : defaultInventory;
+
   const [searchTerm, setSearchTerm] = useState('');
   const [scopeFilter, setScopeFilter] = useState('All');
   const [statusFilter, setStatusFilter] = useState('All');
   const [selectedAsset, setSelectedAsset] = useState(null);
 
   // Compute summary stats
-  const totalEmissions = items.reduce((acc, item) => acc + (item.emissions || 0), 0);
-  const scope1Total = items.filter(i => i.scope === 'Scope 1').reduce((acc, item) => acc + (item.emissions || 0), 0);
-  const scope2Total = items.filter(i => i.scope === 'Scope 2').reduce((acc, item) => acc + (item.emissions || 0), 0);
-  const scope3Total = items.filter(i => i.scope === 'Scope 3').reduce((acc, item) => acc + (item.emissions || 0), 0);
+  const totalEmissions = activeItems.reduce((acc, item) => acc + (item.emissions || 0), 0);
+  const scope1Total = activeItems.filter(i => i.scope === 'Scope 1').reduce((acc, item) => acc + (item.emissions || 0), 0);
+  const scope2Total = activeItems.filter(i => i.scope === 'Scope 2').reduce((acc, item) => acc + (item.emissions || 0), 0);
+  const scope3Total = activeItems.filter(i => i.scope === 'Scope 3').reduce((acc, item) => acc + (item.emissions || 0), 0);
 
   // Filter items
-  const filteredItems = items.filter((item) => {
+  const filteredItems = activeItems.filter((item) => {
     const matchesSearch =
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -204,7 +328,7 @@ const Inventory = ({ items = [] }) => {
         <div className="kpi-card footprint">
           <div className="kpi-header">TRACKED ASSETS</div>
           <div className="kpi-value-container">
-            <span className="kpi-value">{items.length}</span>
+            <span className="kpi-value">{activeItems.length}</span>
             <span className="kpi-unit">sources</span>
           </div>
           <div className="kpi-footer">
@@ -301,7 +425,7 @@ const Inventory = ({ items = [] }) => {
             <p>Comprehensive register of audited emission activities and energy assets</p>
           </div>
           <span className="proposals-badge">
-            {filteredItems.length} OF {items.length} ITEMS
+            {filteredItems.length} OF {activeItems.length} ITEMS
           </span>
         </div>
 

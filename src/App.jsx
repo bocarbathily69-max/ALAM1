@@ -46,7 +46,15 @@ function App() {
             </section>
           </>
         ) : activeTab === 'inventory' ? (
-          <Inventory items={currentData.inventory || []} />
+          <Inventory items={currentData.inventory || mockData["Main Overview"].inventory} />
+        ) : activeTab === 'planner' ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <DecarbonizationPlanner proposals={currentData.proposals || []} />
+          </div>
+        ) : activeTab === 'reports' ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <ConsolidatedTable sites={currentData.sites || []} onViewReport={setActiveReport} />
+          </div>
         ) : (
           <div
             style={{
