@@ -53,7 +53,11 @@ function App() {
             <DecarbonizationPlanner proposals={currentData.proposals || []} />
           </div>
         ) : activeTab === 'reports' ? (
-          <Reports reports={currentData.reports || mockData["Main Overview"].reports} />
+          <Reports
+            reports={currentData.reports || mockData["Main Overview"].reports}
+            sites={currentData.sites || mockData["Main Overview"].sites}
+            onViewReport={setActiveReport}
+          />
         ) : (
           <div
             style={{

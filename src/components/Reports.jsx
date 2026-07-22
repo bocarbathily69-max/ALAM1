@@ -1,8 +1,9 @@
 ﻿import React, { useState } from 'react';
 import {
   FileText, Download, Award, ShieldCheck, CheckCircle2,
-  Clock, AlertCircle, Printer, X, FileCheck, Layers, Sparkles, ExternalLink, Filter, Search
+  Clock, AlertCircle, Printer, X, FileCheck, Layers, Sparkles, ExternalLink, Filter, Search, Building2
 } from 'lucide-react';
+import ConsolidatedTable from './ConsolidatedTable';
 
 /* ─── Default Fallback Reports ─────────────────────────────────────────── */
 const defaultReports = [
@@ -276,7 +277,7 @@ const ReportViewerModal = ({ report, onClose }) => {
 };
 
 /* ─── Main Reports Component ─────────────────────────────────────────────── */
-const Reports = ({ reports = [] }) => {
+const Reports = ({ reports = [], sites = [], onViewReport }) => {
   const activeReports = (reports && reports.length > 0) ? reports : defaultReports;
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedReport, setSelectedReport] = useState(null);
@@ -289,7 +290,6 @@ const Reports = ({ reports = [] }) => {
   );
 
   const handleGenerateTemplate = (template) => {
-    // Open a dynamically constructed report based on the template
     const newReport = {
       id: `REP-${Date.now().toString().slice(-4)}`,
       title: `${template.title} - ${new Date().getFullYear()}`,
@@ -306,9 +306,9 @@ const Reports = ({ reports = [] }) => {
   };
 
   return (
-    <div className="reports-page-container">
+    <div className="reports-page-container" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* ── Top Compliance KPI Cards ── */}
-      <div className="kpi-grid" style={{ marginBottom: '1.5rem' }}>
+      <div className="kpi-grid">
         <div className="kpi-card footprint">
           <div className="kpi-header">GENERATED REPORTS</div>
           <div className="kpi-value-container">
@@ -357,7 +357,7 @@ const Reports = ({ reports = [] }) => {
       </div>
 
       {/* ── Preset Report Generation Templates Section ── */}
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
           <div>
             <h3 style={{ fontSize: '1.15rem', fontWeight: '700', color: 'var(--color-text-primary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -431,8 +431,8 @@ const Reports = ({ reports = [] }) => {
         </div>
       </div>
 
-      {/* ── Archived Reports Data Table ── */}
-      <div className="table-card" style={{ marginTop: '1.25rem' }}>
+      {/* ── Corporate Compliance Reports Table ── */}
+      <div className="table-card">
         <div className="table-header">
           <h3>Archived Audit Reports & Statements</h3>
           <p>Official repository of verified environmental accounting statements</p>
@@ -518,6 +518,11 @@ const Reports = ({ reports = [] }) => {
           </table>
         </div>
       </div>
+
+      {/* ── Multi-Site Carbon Audits Table Section ── */}
+      {sites && sites.length > 0 && (
+        <ConsolidatedTable sites={sites} onViewReport={onViewReport} />
+      )}
 
       {/* ── Interactive Report Viewer Modal ── */}
       {selectedReport && (
